@@ -28,14 +28,19 @@ def get_skills():
 def get_topics_by_id(id):
     topics = data_manager.read_data(TOPICS_FILE)
     topic = next((topic for topic in topics if topic.get('id').lower() == id.lower()), None)
-    return jsonify(topic)
+    if topic:
+        return jsonify(topic)
+    else:
+        return jsonify({"[ERROR]": "Topic Not found"}), 404
 
-
-@app.route('skills/<id>', methods=['GET'])
+@app.route('/skills/<id>', methods=['GET'])
 def get_skill_by_id(id):
     skills = data_manager.read_data(SKILLS_FILE)
-    sill = next((skill for skill in skill if skill.get('id').lower() == id.lower()), None)
-    return jsonify(skill)
+    skill = next((skill for skill in skills if skill.get('id').lower() == id.lower()), None)
+    if skill:
+        return jsonify(skill)
+    else:
+        return jsonify({"[ERROR]": "Skill ID Not found"}), 404
 
 
 
