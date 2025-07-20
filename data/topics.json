@@ -1,10 +1,5 @@
 [
     {
-        "id": "t1",
-        "name": "Web Development Fundamentals",
-        "description": "Kernkonzepte f\u00fcr die Entwicklung von Webanwendungen, einschlie\u00dflich HTML, CSS und JavaScript."
-    },
-    {
         "id": "t2",
         "name": "Frontend Development",
         "description": "Fokus auf die Benutzeroberfl\u00e4che und Interaktion, wie React, Vue oder Angular."
@@ -16,6 +11,13 @@
     },
     {
         "id": "3c327d4c-23b0-4634-9601-1c923bb7b0d0",
+        "name": "Grundlagen der K\u00fcnstlichen Intelligenz",
+        "description": "Eine Einf\u00fchrung in die Konzepte und Anwendungen von KI, einschlie\u00dflich maschinellem Lernen und neuronalen Netzen.",
+        "prerequisites": "Unknown prerequisites",
+        "parentTopicId": "Unknown parent Topic ID"
+    },
+    {
+        "id": "9d82906f-7217-4e8a-97c7-58c314fe7954",
         "name": "Grundlagen der K\u00fcnstlichen Intelligenz",
         "description": "Eine Einf\u00fchrung in die Konzepte und Anwendungen von KI, einschlie\u00dflich maschinellem Lernen und neuronalen Netzen.",
         "prerequisites": "Unknown prerequisites",

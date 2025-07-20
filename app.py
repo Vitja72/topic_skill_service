@@ -1,5 +1,6 @@
 import os
 import uuid
+import json 
 from flask import Flask, jsonify, request
 from data_manager import JsonDataManager 
 
@@ -116,6 +117,105 @@ def create_skills():
     data_manager.write_data(SKILLS_FILE, skills)
     # return the 
     return jsonify(skill), 201
+
+
+@app.route("/topics/<string:id>", methods = ["PUT"])
+def update_topic(id):
+    updated_data = request.json
+
+    if not updated_data or "name" not in updated_data or "description" not in updated_data:
+       return jsonify({"[ERROR]":"'Name' or 'description' not in updated_data "}), 400 
+    
+    topics = data_manager.read_data(TOPICS_FILE)
+    found_index = -1
+
+    for index, topic in enumerate(topics):
+        if topic["id"] == id:
+            found_index = index 
+            break
+
+    if found_index == -1:
+        return jsonify({"[ERROR]": "Topic not found."}), 404
+    
+    topics[found_index]["name"] = updated_data["name"]
+    topics[found_index]["description"] = updated_data["description"]
+
+    if "prerequisites" in updated_data:
+        topics[found_index]["prerequisites"] = updated_data["prerequisites"]
+    if "parentTopicId" in updated_data:
+        topics[found_index]["parentTopicId"] = updated_data["parentTpociId"]
+
+    data_manager.write_data(TOPICS_FILE,topics)
+    return jsonify(topics[found_index]), 200
+
+
+
+@app.route("/skills/<string:id>", methods = ["PUT"])
+def update_skill(id):
+    updated_data = request.json
+
+    if not updated_data or "name" not in updated_data or "topicId" not in updated_data:
+       return jsonify({"[ERROR]":"'Name' or 'topicId' not in updated_data "}), 400 
+    
+    skills = data_manager.read_data(SKILLS_FILE)
+    found_index = -1
+
+    for index, skill in enumerate(skills):
+        if skill["id"] == id:
+            found_index = index 
+            break
+
+    if found_index == -1:
+        return jsonify({"[ERROR]": "Skill not found."}), 404
+    
+    skills[found_index]["name"] = updated_data["name"]
+    skills[found_index]["topicId"] = updated_data["topicId"]
+
+    if "difficulty" in updated_data:
+        skills[found_index]["difficulty"] = updated_data["difficulty"]
+    
+
+    data_manager.write_data(SKILLS_FILE,skills)
+    return jsonify(skills[found_index]), 200
+
+
+@app.route("/topics/<string:id>", methods = ["DELETE"])
+def delete_topic(id):
+    topics = data_manager.read_data(TOPICS_FILE)
+    found_index = -1
+
+    for index, topic in enumerate(topics):
+        if topic["id"] == id:
+            found_index = index 
+            break 
+
+    if found_index == -1:
+        return jsonify({"[ERROR]": "Topic not found"})
+    
+    topics.pop(found_index)
+    data_manager.write_data(TOPICS_FILE,topics)
+
+    return "", 204
+
+
+
+@app.route("/skills/<string:id>", methods = ["DELETE"])
+def delete_skill(id):
+    skills = data_manager.read_data(SKILLS_FILE)
+    found_index = -1
+
+    for index, skill in enumerate(skills):
+        if skill["id"] == id:
+            found_index = index 
+            break 
+
+    if found_index == -1:
+        return jsonify({"[ERROR]": "Skill not found"})
+    
+    skills.pop(found_index)
+    data_manager.write_data(SKILLS_FILE,skills)
+
+    return "", 204
 
 
 

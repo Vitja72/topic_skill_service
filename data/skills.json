@@ -1,8 +1,8 @@
 [
     {
         "id": "s1",
-        "name": "HTML Basics",
-        "topicId": "t1",
+        "name": "HTML Basics AKTUALISIERT",
+        "topicId": "t1 AKTUALISIERT",
         "difficulty": "beginner"
     },
     {
@@ -15,21 +15,12 @@
         "id": "s3",
         "name": "React Hooks",
         "topicId": "t2",
-        "difficulty": "advanced",
-        "prerequisites": [
-            "s4"
-        ]
+        "difficulty": "advanced"
     },
     {
         "id": "s4",
         "name": "JavaScript ES6+",
         "topicId": "t1",
         "difficulty": "intermediate"
-    },
-    {
-        "id": "dc6f341e-01fa-4ba2-9952-77d17cd73059",
-        "name": "Grundlagen von Python",
-        "topicId": "t3",
-        "difficulty": "beginner"
     }
 ]
